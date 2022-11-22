@@ -1,20 +1,19 @@
 const express = require('express')
+const roleMiddleware = require('../../middlewares/roleMiddleware')
 const router = express.Router()
 
 const products = require('./../../../storage/products')
 
-router.post('/', async (req, res) => {
+router.post('/', roleMiddleware, async (req, res, next) => {
   try {
-    await products.save(req.body)
+    const newProduct = await products.save(req.body)
+    res.status(200).json(newProduct)
   } catch (error) {
-    console.log(error)
-    res.status(400).json({
-      response: 'error'
-    })
+    next(error)
   }
 })
 
-router.get('/', async (_req, res) => {
+router.get('/', async (_req, res, next) => {
   try {
     let data = await products.getAll()
     if (data) {
@@ -26,14 +25,11 @@ router.get('/', async (_req, res) => {
       })
     }
   } catch (error) {
-    console.log(error)
-    res.status(400).json({
-      response: 'error'
-    })
+    next(error)
   }
 })
 
-router.get('/random', async (_req, res) => {
+router.get('/random', async (_req, res, next) => {
   try {
     let data = []
     data.push(await products.getOne())
@@ -51,14 +47,11 @@ router.get('/random', async (_req, res) => {
       })
     }
   } catch (error) {
-    console.log(error)
-    res.status(400).json({
-      response: 'error'
-    })
+    next(error)
   }
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', roleMiddleware, async (req, res, next) => {
   let { id } = req.params
   try {
     let data = await products.putById(id, req.body)
@@ -72,14 +65,11 @@ router.put('/:id', async (req, res) => {
       })
     }
   } catch (error) {
-    console.log(error)
-    res.status(400).json({
-      respones: 'error'
-    })
+    next(error)
   }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', roleMiddleware, async (req, res, next) => {
   console.log('deletebyid')
   let { id } = req.params
   try {
@@ -94,10 +84,7 @@ router.delete('/:id', async (req, res) => {
       })
     }
   } catch (error) {
-    console.log(error)
-    res.status(400).json({
-      response: 'error'
-    })
+    next(error)
   }
 })
 

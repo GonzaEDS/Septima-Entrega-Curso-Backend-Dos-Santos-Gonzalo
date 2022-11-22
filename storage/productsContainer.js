@@ -1,4 +1,6 @@
 const fs = require('fs')
+const { v4: uuidv4 } = require('uuid')
+const productDTO = require('./../dto/product.dto')
 
 class ProductsContainer {
   constructor(fileName) {
@@ -29,20 +31,22 @@ class ProductsContainer {
     const newProduct = {
       ...product,
       id: this.count + 1,
-      timestamp: Date.now()
+      timestamp: parseInt(Date.now()) / 100,
+      uuid: uuidv4()
     }
     products.push(newProduct)
 
     const productsStr = JSON.stringify(products, null, 3)
     await fs.promises.writeFile(this.filename, productsStr)
-    return newProduct
+    return new productDTO(newProduct)
   }
   async getAll() {
     try {
       const products = await fs.promises.readFile(this.filename, 'utf-8'),
         productsJson = await JSON.parse(products)
       if (productsJson.length > 0) {
-        return productsJson
+        const productsDTO = productsJson.map(product => new productDTO(product))
+        return productsDTO
       } else {
         return null
       }

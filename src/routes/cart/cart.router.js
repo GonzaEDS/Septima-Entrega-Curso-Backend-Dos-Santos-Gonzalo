@@ -10,18 +10,17 @@ router.get('/', (_req, res, next) => {
   }
 })
 
-router.post('/', async (_req, res) => {
+router.post('/', async (_req, res, next) => {
   try {
     const new_Cart = await carts.newCart()
-    console.log(new_Cart.id)
     const id = new_Cart.id
     res.status(200).send({ id })
   } catch (error) {
-    console.log(error)
+    next(error)
   }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', async (req, res, next) => {
   let { id } = req.params
   try {
     let deletedCart = await carts.deleteById(id)
@@ -35,14 +34,11 @@ router.delete('/:id', async (req, res) => {
       })
     }
   } catch (error) {
-    console.log(error)
-    res.status(400).json({
-      response: 'error'
-    })
+    next(error)
   }
 })
 
-router.get('/:id/products', async (req, res) => {
+router.get('/:id/products', async (req, res, next) => {
   try {
     let { id } = req.params
     const getCartProducts = await carts.getCartProducts(id)
@@ -54,22 +50,22 @@ router.get('/:id/products', async (req, res) => {
       })
     }
   } catch (error) {
-    console.log(error)
+    next(error)
   }
 })
 
-router.post('/:id/products', async (req, res) => {
+router.post('/:id/products', async (req, res, next) => {
   let { productId } = req.body
   let { id } = req.params
   try {
     const addedProd = await carts.addProduct(id, productId)
     res.status(200).send({ id: addedProd })
   } catch (error) {
-    console.log(error)
+    next(error)
   }
 })
 
-router.delete('/:id_cart/products/:id_product', async (req, res) => {
+router.delete('/:id_cart/products/:id_product', async (req, res, next) => {
   try {
     let { id_cart, id_product } = req.params
     console.log(id_cart, id_product)
@@ -81,7 +77,7 @@ router.delete('/:id_cart/products/:id_product', async (req, res) => {
       response: 'can not find'
     })
   } catch (error) {
-    console.log(error)
+    next(error)
   }
 })
 

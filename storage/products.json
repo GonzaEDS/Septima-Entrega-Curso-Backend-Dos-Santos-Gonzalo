@@ -5,7 +5,8 @@
       "price": 123.42,
       "thumbnail": "https://cdn4.iconfinder.com/data/icons/education-759/2050/Education_flat-16-1024.png",
       "id": 1,
-      "timestamp": 1669092872586
+      "timestamp": 16691391585.21,
+      "uuid": "cc71d32f-bf8a-4cb1-80b2-81a63343a9d2"
    },
    {
       "name": "Regla",
@@ -13,7 +14,8 @@
       "price": 23.34,
       "thumbnail": "https://cdn4.iconfinder.com/data/icons/education-759/2050/Education_flat-16-1024.png",
       "id": 2,
-      "timestamp": 1669092872588
+      "timestamp": 16691391585.24,
+      "uuid": "5ec83d3b-a6ad-4d56-af23-776085c02c21"
    },
    {
       "name": "Calculadora",
@@ -21,7 +23,8 @@
       "price": 134.45,
       "thumbnail": "https://cdn1.iconfinder.com/data/icons/icons-for-a-site-1/64/advantage_calculator-1024.png",
       "id": 3,
-      "timestamp": 1669092872591
+      "timestamp": 16691391585.26,
+      "uuid": "8e639317-b2c6-49ea-99f5-f8e9b0b525f3"
    },
    {
       "name": "Globo terraqueo",
@@ -29,7 +32,8 @@
       "price": 200.5,
       "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-1024.png",
       "id": 4,
-      "timestamp": 1669092872599
+      "timestamp": 16691391585.28,
+      "uuid": "3b5bdb77-9518-41aa-9cab-6e101fbd05aa"
    },
    {
       "name": "Microscopio",
@@ -37,6 +41,16 @@
       "price": 2100.45,
       "thumbnail": "https://cdn4.iconfinder.com/data/icons/education-759/2050/Education_flat-10-1024.png",
       "id": 5,
-      "timestamp": 1669092872602
+      "timestamp": 16691391585.32,
+      "uuid": "8d304b7e-c050-4ce5-9600-ec913d065dae"
+   },
+   {
+      "name": "New Product",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "price": 2100.45,
+      "thumbnail": "https://cdn4.iconfinder.com/data/icons/education-759/2050/Education_flat-10-1024.png",
+      "id": 6,
+      "timestamp": 16691442856.32,
+      "uuid": "e323f69f-4afd-4fa8-86dd-bbc79a088a18"
    }
 ]

@@ -18,7 +18,7 @@ class CartsContainer {
       }
       const newCart = {
         id: this.count + 1,
-        timestamp: Date.now(),
+        timestamp: parseInt(Date.now()) / 100,
         products: []
       }
       carts.push(newCart)
