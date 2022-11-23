@@ -57,11 +57,25 @@ class ProductsContainer {
 
   async getOne() {
     try {
-      const data = await fs.promises.readFile(this.fileName, 'utf-8')
+      const data = await fs.promises.readFile(this.filename, 'utf-8')
       const jsonData = await JSON.parse(data)
       if (jsonData.length > 0) {
         const random = parseInt(Math.random() * jsonData.length)
-        return jsonData[random]
+        return new productDTO(jsonData[random])
+      } else {
+        return null
+      }
+    } catch (err) {
+      throw new Error(err)
+    }
+  }
+  async getById(num) {
+    try {
+      const productsData = await fs.promises.readFile(this.filename, 'utf-8')
+      const products = await JSON.parse(productsData)
+      if (products.length > 0) {
+        const requestedProd = products.find(prod => prod.id == num)
+        return new productDTO(requestedProd)
       } else {
         return null
       }
@@ -107,7 +121,7 @@ class ProductsContainer {
       foundIndex = jsonData.findIndex(element => element.id === id)
       if (foundIndex !== -1) {
         jsonData.splice(foundIndex, 1)
-        fs.writeFileSync(this.fileName, JSON.stringify(jsonData, null, 2))
+        fs.writeFileSync(this.filename, JSON.stringify(jsonData, null, 2))
         return num
       } else {
         console.log(`ID "${num}" not found`)

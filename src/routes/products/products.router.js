@@ -29,18 +29,12 @@ router.get('/', async (_req, res, next) => {
   }
 })
 
-router.get('/random', async (_req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
-    let data = []
-    data.push(await products.getOne())
-
-    if (data) {
-      //   res.render('pages/index', {
-      //     data,
-      //     page: 'table',
-      //     title: 'Random product'
-      //   })
-      res.status(200).send(data)
+    let { id } = req.params
+    const requestedProd = await products.getById(parseInt(id))
+    if (requestedProd) {
+      res.status(200).json(requestedProd)
     } else {
       res.status(404).json({
         response: 'can not find'
@@ -70,7 +64,6 @@ router.put('/:id', roleMiddleware, async (req, res, next) => {
 })
 
 router.delete('/:id', roleMiddleware, async (req, res, next) => {
-  console.log('deletebyid')
   let { id } = req.params
   try {
     let data = await products.deleteById(id)
